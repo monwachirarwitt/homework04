@@ -16,7 +16,7 @@ body {
 .container {
     max-width: 1200px; /* ความกว้างสูงสุดของเว็บ */
     margin: 0 auto;    /* สูตรจัดกึ่งกลาง (บนล่าง 0, ซ้ายขวา auto) */
-    padding: 20px;     /* ดันเนื้อหาไม่ให้ชิดขอบซ้ายขวาเกินไป */
+    padding-block: 20px;     /* ดันเนื้อหาไม่ให้ชิดขอบซ้ายขวาเกินไป */
     
 
 }
@@ -393,4 +393,7 @@ body {
 .level-dropdown:hover .dropdown-list,
 .level-dropdown:focus .dropdown-list {
     display: block;
+}
+hr{
+    
 }
