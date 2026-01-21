@@ -1,399 +1,317 @@
-/* ล้างค่าพื้นฐานทุกอย่าง */
+/* --- CSS Variables & Reset --- */
+:root {
+    --primary-color: #00d2aa;
+    --bg-color: #fcfcfc;
+    --text-dark: #333;
+    --text-grey: #888;
+    --card-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* สำคัญมาก! ช่วยให้คำนวณขนาดกล่องง่ายขึ้น */
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
 
 body {
-    font-family: 'Poppins', sans-serif; /* เปลี่ยนฟอนต์ทั้งเว็บ */
-    /* ...ค่าอื่นๆ คงเดิม... */
+    background-color: var(--bg-color);
+    color: var(--text-dark);
 }
 
-/* กล่องจัดกลางหน้าจอ */
-.container {
-    max-width: 1200px; /* ความกว้างสูงสุดของเว็บ */
-    margin: 0 auto;    /* สูตรจัดกึ่งกลาง (บนล่าง 0, ซ้ายขวา auto) */
-    padding-block: 20px;     /* ดันเนื้อหาไม่ให้ชิดขอบซ้ายขวาเกินไป */
-    
-
-}
-
-.navbar {
-
-    padding: 20px 0;
-    background-color: white; /* เปลี่ยนจาก #ccc เป็น white หรือลบทิ้ง */
-
-    /* [?] จงเติมคำสั่ง 2 บรรทัดข้างล่างนี้ เพื่อให้ลูกๆ (logo, menu, actions) 
-       เรียงแนวนอน และ กระจายห่างกันจนชิดขอบซ้าย-กลาง-ขวา */
-    
-    display: flex ; 
-    justify-content: space-between ;
-    align-items: center; 
-    /* แถมให้: อันนี้ช่วยให้แนวตั้งมันอยู่กึ่งกลาง */
-    /* ของเดิม: display: flex; justify-content: space-between; align-items: center; */
-    /* เพิ่มสิ่งนี้เข้าไป: */
-    padding: 20px 0;       /* เว้นบนล่างให้ดูโปร่ง */
-    font-size: 14px;       /* ปรับขนาดตัวอักษรให้ดูแพง (ไม่ใหญ่เทอะทะ) */
-    font-weight: bold;     /* ตัวหนาตามแบบ */
-    color: #555;           /* สีเทาเข้ม (ไม่ดำสนิท) */
-
-
-}
-/* --- Step 3: จัดโครงสร้าง ซ้าย-ขวา --- */
-
-.nav-menu{
+/* --- Navbar --- */
+nav {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
 }
 
-/* 1. กล่องแม่: สั่งให้ลูกเรียงแนวนอน */
-.main-content {
-    margin-top: 20px; /* เว้นห่างจาก Navbar หน่อย */
-    
-    /* [?] จงเติมคำสั่งเพื่อให้ลูกๆ เรียงเป็นแนวนอน (เหมือน Navbar) */
-    display: flex ; 
-    
-    /* [?] คำสั่งเว้นช่องว่างระหว่างกล่องลูก 30px (ไม่ต้องใช้ margin) */
-    gap: 30px; 
-}
-
-/* 2. ฝั่งซ้าย: กว้าง 2 ส่วน */
-.cart-section {
-    /* background-color: pink; 
-    ใส่สีชั่วคราวจะได้เห็นภาพ */
-    
-
-    
-    /* [?] สั่งให้กินพื้นที่ 2 ส่วน */
-    flex: 2 ; 
-    margin-right: 40px;
-}
-
-/* สั่งให้รูปภาพที่อยู่ใน .ticket-icon มีความกว้างแค่ 24px */
-.ticket-icon img {
-    width: 24px;
-    height: auto; /* สูงอัตโนมัติ สัดส่วนจะไม่เพี้ยน */
-}
-/* 3. ฝั่งขวา: กว้าง 1 ส่วน */
-.summary-section {   
-    /* [?] สั่งให้กินพื้นที่ 1 ส่วน */
-    flex: 1 ;
-    background-color: white;
-    /* 2. ดันเนื้อหาเข้าข้างในรอบด้าน */
-    padding: 30px;
-
-    /* 3. ลบมุมแหลมทิ้ง */
-    border-radius: 20px;
-
-    /* 4. เงา (ยากสุด) สูตรคือ: แนวนอน0 แนวตั้ง10 เบลอ30 สีจางๆ */
-    /* แปลว่า: แสงส่องลงมาตรงๆ (0), เงาตกข้างล่าง (10px), เงาฟุ้งๆ (30px) */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-
-
-}
-
-
-/* --- CSS สำหรับส่วน Order Info --- */
-
-/* 1. จัดแถวที่มี "ซ้าย-ขวา" (Subtotal, Total) */
-.summary-row {
-    display: flex;
-    justify-content: space-between; /* ดันชิดซ้ายขวา */
-    align-items: center;            /* ให้อยู่กึ่งกลางบรรทัด */
-    margin-bottom: 15px;            /* เว้นระยะห่างแต่ละแถว */
-    color: #555;                    /* สีเทาๆ ไม่ดำสนิท */
-}
-
-/* 2. จัดแถว Promotion (ไอคอน + ช่องกรอก + ปุ่ม) */
-.promo-row {
+.logo {
     display: flex;
     align-items: center;
-    gap: 10px;          /* เว้นระยะห่างระหว่างของข้างใน 10px */
-    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--text-dark);
 }
 
-/* ปรับช่อง Input ให้ยืดเต็มพื้นที่ */
-.promo-row input {
-    flex: 1;            /* สั่งให้ยืดกินพื้นที่ว่าง */
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.logo i {
+    color: var(--primary-color);
+    margin-right: 8px;
+    font-size: 1.5rem;
 }
 
-/* 3. ปรับแต่งแถว Total (เฉพาะแถวที่มี class 'total') */
-.summary-row.total {
-    margin-top: 20px;
-    font-weight: bold;      /* ตัวหนา */
-    font-size: 1.2rem;      /* ตัวใหญ่ขึ้น */
-}
-
-.total-price {
-    color: #00C9A7;
-    font-size: 24px;
-    font-weight: bold;
-
-}
-
-/* 4. ปุ่ม Checkout ด้านล่าง */
-.btn-checkout {
-   width: 100%; /* กว้างเต็มจอ */  
-   background-color: greenyellow;
-}
-
-/* --- ส่วนรายการสินค้า (ฝั่งซ้าย) --- */
-
-/* 1. กล่องใหญ่ครอบทั้งแถว */
-.item-card {
-/* 1. จัดวาง Layout */
+.nav-links {
+    list-style: none;
     display: flex;
-    align-items: center;
-    width: 100%;           /* ให้กว้างเต็มพื้นที่พ่อแม่ (ไม่ต้อง 80% แล้ว) */
-    margin-bottom: 20px;   /* เว้นระยะห่างระหว่างการ์ด */
-    
-    /* 2. ดีไซน์ (Card Style) */
-    background-color: white; /* พื้นขาว */
-    padding: 20px;           /* ระยะห่างภายใน */
-    border-radius: 15px;     /* ขอบมน */
-    
-    /* 3. เงา (ให้เหมือนฝั่งขวา) */
-    box-shadow: 0 5px 20px rgba(0,0,0,0.03);
-    
-    /* เส้นขอบจางๆ (เผื่ออยากให้ชัดขึ้น) */
-    border: 1px solid #f0f0f0;
+    gap: 30px;
 }
 
-/* 2. กล่องปุ่มลบ (ซ้ายสุด) */
-.box-delete {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;      /* วงกลม */
-    
-    /* เปลี่ยนจากพื้นหลังสีชมพู เป็นพื้นขาวมีขอบ */
-    background-color: white; 
-    border: 1px solid #00C9A7; /* ขอบสีเขียว */
-    color: #00C9A7;            /* ไอคอนสีเขียว */
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 20px;
-    cursor: pointer;
-    
-    /* เพิ่มลูกเล่นตอนชี้ */
-    transition: 0.2s;
-}
-.box-delete:hover {
-    background-color: #e0fff8; /* ชี้แล้วพื้นหลังเขียวอ่อน */
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
 }
 
-/* 3. กล่องรูปภาพ */
-.box-image {
-    width: 60px;
-    height: 60px;
-    border-radius: 12px;   /* มนหน่อยๆ */
-    margin-right: 20px;    /* ดันข้อความไปทางขวา */
-    
-    /* ใส่สี Gradient (สีฟ้า) */
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    
-    /* จัดไอคอนตรงกลาง */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    color: white;          /* ไอคอนสีขาว */
-    font-size: 24px;       /* ขนาดไอคอน */
-    font-weight: bold;
-}
-
-/* 4. กล่องรายละเอียด (พระเอกของเรา!) */
-.box-detail {
-    /* โจทย์: อยากให้กล่องนี้ "ยืด" กินพื้นที่ว่างทั้งหมด เพื่อดันราคาไปขวาสุด */
-    /* ต้องใส่เลขอะไร? (ใบ้: 1) */
-    flex: 1;
-   
-}
-
-.box-detail h3 {
-    margin-bottom: 5px;
-    font-size: 18px;
-}
-
-.box-detail p {
-    color: #888;
-    font-size: 14px;
-}
-
-/* 5. กล่องราคา */
-.box-price {
-    font-weight: bold;
-    font-size: 18px;
-}
-
-
-/* เลือก .item-card ตัวที่ 2 แล้วไปแก้ .box-image ข้างใน */
-.item-card:nth-child(2) .box-image {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-}
-
-/* เทคนิค: สร้างขีดเขียวๆ หน้าโลโก้ด้วย CSS (Pseudo-element) */
-.nav-logo::before {
-
-    display: block;
-    width: 6px;
-    height: 20px;
-
-    margin-right: 10px;
-    border-radius: 2px;
-    transform: skew(-10deg);
-}
-/* 3. จัดระยะห่างเมนูตรงกลาง */
-.nav-menu {
-    display: flex;         /* เรียงแนวนอน */
-    gap: 30px;             /* เว้นห่างกัน 30px (ใช้ gap ง่ายกว่า margin) */
-}
-
-.nav-menu span {
-    cursor: pointer;       /* ชี้แล้วเป็นรูปมือ */
-    color: #888;           /* สีเทาอ่อนหน่อย */
-    transition: 0.3s;      /* เอฟเฟกต์เปลี่ยนสี */
-}
-
-.nav-menu span:hover {
-    color: #333;           /* ชี้แล้วเข้มขึ้น */
-}
-
-/* 4. จัดระยะห่างกลุ่มขวามือ */
 .nav-actions {
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
-/* เลือก h1 ที่อยู่ในกล่อง .cart */
-.cart h1 {
-    font-size: 32px;       /* ใหญ่สะใจ */
-    font-weight: 800;      /* หนาพิเศษ */
-    margin-bottom: 30px;   /* เว้นระยะห่างจากกล่องสินค้าด้านล่าง */
-    color: #333;
-}
-/* จัดเรียงจุดและ level ให้อยู่บรรทัดเดียวกัน */
-.status-dots {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    margin: 5px 0;
-}
-
-/* สร้างจุดวงกลม */
-.dot {
-    width: 8px;
-    height: 8px;
-    background-color: #eee; /* สีเทา (ยังไม่ active) */
-    border-radius: 50%;
-}
-
-/* จุดสีเขียว (active) */
-.dot.active {
-    background-color: #00C9A7;
-}
-
-/* ข้อความ LV 1-3 เล็กๆ */
-.level-text {
-    font-size: 10px;
-    color: #aaa;
-    border: 1px solid #eee;
-    padding: 2px 6px;
-    border-radius: 4px;
-    margin-left: 5px;
-}
-
-/* ข้อความ Used for Business */
-.sub-text {
-    font-size: 12px;
-    color: #00C9A7; /* สีเขียว */
-}
-/* จัดตำแหน่งให้ badge ลอยอยู่บนรถเข็น */
-.cart-icon-wrap {
-    position: relative; /* เป็นจุดอ้างอิง */
+.icon-btn {
+    position: relative;
     cursor: pointer;
+    color: #aaa;
+    font-size: 1.1rem;
 }
 
 .badge {
     position: absolute;
-    top: -5px;    /* ลอยขึ้นไปข้างบน */
-    right: -8px;  /* ลอยไปทางขวา */
-    background-color: #ff4757; /* สีแดง */
+    top: -5px;
+    right: -8px;
+    background: #ff4757;
     color: white;
-    font-size: 10px;
+    font-size: 0.6rem;
     width: 16px;
     height: 16px;
-    border-radius: 50%; /* วงกลม */
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid white; /* ตัดขอบขาวให้ดูสวย */
-}
-/* --- ส่วน Dropdown LV --- */
-
-/* กล่องครอบทั้งหมด */
-.level-dropdown {
-    position: relative; /* เป็นจุดอ้างอิงให้เมนูที่เด้งออกมา */
-    display: inline-block;
-    margin-left: 5px;
-    cursor: pointer;
-    outline: none; /* เอาเส้นขอบเวลาคลิกออก */
 }
 
-/* ตัวหนังสือที่โชว์อยู่ (LV 1-3) */
-.selected-text {
-    font-size: 10px;
-    color: #555;
-    border: 1px solid #ccc;
-    padding: 2px 8px;
-    border-radius: 4px;
-    background-color: white;
+.btn-text {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
 }
 
-/* รายการเมนูที่ซ่อนอยู่ */
-.dropdown-list {
-    display: none; /* ซ่อนไว้ก่อน */
-    position: absolute; /* ลอยอิสระ */
-    top: 100%;     /* อยู่ใต้กล่องแม่พอดี */
-    left: 0;
-    width: 80px;   /* กำหนดความกว้างเมนู */
-    background-color: white;
+.login-link { color: #555; }
+.signup-link { color: #555; }
+
+/* --- Main Layout --- */
+.container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 40px;
+}
+
+/* --- Cart Items (Left Side) --- */
+.cart-item {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: var(--card-shadow);
+}
+
+.trash-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     border: 1px solid #eee;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* เงา */
-    z-index: 100;  /* ลอยอยู่บนสุดทับตัวอื่น */
-    overflow: hidden; /* ตัดมุมเกิน */
-    margin-top: 5px;
+    color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.trash-btn:hover { background: #f0f0f0; }
+
+/* แก้ไขส่วนนี้ */
+.product-icon {
+    width: 130px;          /* ขยายความกว้างกล่อง (จากเดิม 80px) */
+    height: 130px;         /* ขยายความสูงกล่อง (จากเดิม 80px) */
+    border-radius: 20px;   /* เพิ่มความโค้งมนให้สมส่วนกับขนาดใหม่ */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-right: 25px;    /* ขยับห่างจากข้อความอีกนิด */
+    flex-shrink: 0;        /* ป้องกันกล่องบี้เวลาหน้าจอเล็ก */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* เพิ่มเงาให้ดูมีมิติ */
 }
 
-/* ตัวเลือกข้างในแต่ละอัน */
-.dropdown-list .item {
-    padding: 8px;
-    font-size: 10px;
-    color: #333;
+/* เพิ่มส่วนนี้เข้าไปใหม่ เพื่อคุมรูปข้างในกล่อง */
+.product-icon img {
+    width: 70px;           /* กำหนดขนาดรูปไอคอนให้พอดี (ปรับเลขนี้ได้ถ้าอยากได้ใหญ่ขึ้น) */
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 8px;    /* เว้นระยะห่างจากตัวหนังสือใต้รูป */
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); /* ใส่เงาให้รูปไอคอนเด่นขึ้น */
+}
+
+/* ปรับตัวหนังสือใต้รูปให้สมดุล */
+.product-icon span {
+    font-size: 0.85rem;    /* ขยายตัวหนังสือขึ้นอีกนิด */
+    font-weight: 500;
+    opacity: 1;
+}
+
+.bg-blue { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+.bg-orange { background: linear-gradient(135deg, #f6d365 0%, #fda085 100%); }
+
+.item-details { flex-grow: 1; }
+
+.item-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.dots {
+    color: var(--primary-color);
+    font-size: 0.5rem;
+    margin-right: 10px;
+    letter-spacing: 2px;
+}
+
+.level-select {
+    padding: 5px 25px 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    color: #555;
+    background: white;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23333%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 7px top 50%;
+    background-size: 10px auto;
+}
+
+.level-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.item-price {
+    margin-top: 10px;
+    font-weight: 600;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+/* --- Order Info (Right Side) --- */
+.order-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: var(--card-shadow);
+    height: fit-content;
+}
+
+.order-card h3 {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.promo-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.input-group {
+    position: relative;
+    flex-grow: 1;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px 10px 10px 35px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    outline: none;
+}
+
+.input-group i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-color);
+}
+
+.apply-btn {
+    background: white;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 0 15px;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.total-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.checkout-btn {
+    width: 100%;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
     transition: 0.2s;
 }
 
-/* เวลาเอาเมาส์ชี้ตัวเลือก */
-.dropdown-list .item:hover {
-    background-color: #f0faff; /* สีฟ้าจางๆ */
-    color: #00C9A7;
+.checkout-btn:hover { background: #00b894; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+    nav { padding: 20px; }
+    .nav-links { display: none; }
 }
 
-/* --- หัวใจสำคัญ: สั่งให้โชว์เมื่อ Hover หรือ Click --- */
-/* เมื่อเอาเมาส์ชี้ หรือ เมื่อคลิก (focus) ให้แสดงรายการออกมา */
-.level-dropdown:hover .dropdown-list,
-.level-dropdown:focus .dropdown-list {
-    display: block;
-}
-hr{
-    
+/* เพิ่มส่วนนี้เพื่อคุมขนาด Logo แถบเมนูบนสุด */
+.logo img {
+    height: 40px; /* กำหนดความสูงโลโก้ให้พอดีเมนู */
+    width: auto;
 }

@@ -1,118 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Cart - Code Camp Homework</title>
+    <title>Job Passcard - Shopping Cart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <nav>
+        <div class="logo">
+            <img src="https://www.jobpasscard.com/static/images/layout1.5/Logo.png" alt="">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Passcard</a></li>
+            <li><a href="#">Profile</a></li>
+        </ul>
+        <div class="nav-actions">
+            <div class="icon-btn"><i class="fas fa-search"></i></div>
+            <div class="icon-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="badge">1</span>
+            </div>
+            <a href="#" class="btn-text login-link">LOGIN</a>
+            <a href="#" class="btn-text signup-link">SIGN UP</a>
+        </div>
+    </nav>
+
     <div class="container">
-
-        <nav class="navbar">
-          <div class="nav-logo">JobPasscard</div>
-           <div class="nav-menu">
-           <span>ABOUT US</span>
-           <span>PASSCARD</span>
-           <span>PROFILE</span>
-          </div>        
-                <div class="nav-actions">
-                    <span>🔍</span>
-                    
-                    <span class="cart-icon-wrap">
-                        🛒
-                        <span class="badge">1</span>
-                    </span>
-                    
-                    <span>LOGIN</span>
-                    <span>SIGN UP</span> </div>
-                    </nav>
-                    <hr>
-       
-        <div class="cart"><h1>My Cart</h1></div>               
-        <div class="main-content">            
-            <div class="cart-section">
-
-                <div class="item-card">
-                    <div class="box-delete">🗑️</div>
-                    
-                    <div class="box-image">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Google_Docs_logo_%282014-2020%29.svg" width="30" alt="">
+        <h1>My Cart</h1>
+        
+        <div class="content-grid">
+            <div class="cart-items-section">
+                
+                <div class="cart-item">
+                    <div class="trash-btn">
+                        <i class="far fa-trash-alt"></i>
                     </div>
-
-                    <div class="box-detail">
-                        <h3>Google Docs</h3>
-                        <div class="status-dots">
-                            <span class="dot active"></span> <span class="dot"></span>        <span class="dot"></span>       
-                            <div class="level-dropdown" tabindex="0">
-                                <div class="selected-text">LV 1-3 ▾</div>
-                                <div class="dropdown-list">
-                                    <div class="item">LV 1-3</div>
-                                    <div class="item">LV 2-3 </div> <div class="item">LV 3-3</div>
-                                </div>
-                            </div>
+                    <div class="product-icon bg-blue">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRBLd-pfDtNSCLKaUq3_iEJuSQaAcsc0hxxQ&s" alt="">
+                        <span>Google Docs</span>
+                    </div>
+                    <div class="item-details">
+                        <div class="item-title">Google Docs</div>
+                        
+                        <div>
+                            <i class="fas fa-circle dots"></i> 
+                            <i class="fas fa-circle dots" style="opacity: 0.5;"></i>
+                            <select class="level-select">
+                                <option value="1-3">LV 1-3</option>
+                                <option value="2-3">LV 2-3</option>
+                                <option value="3-3">LV 3-3</option>
+                            </select>
                         </div>
-
+                        <div class="item-price">THB 150</div>
                     </div>
-
-                    <div class="box-price">THB 150</div>
                 </div>
 
-                <div class="item-card">
-                    <div class="box-delete">🗑️</div>
-                    
-                    <div class="box-image">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Google_Slides_logo_%282014-2020%29.svg" width="30" alt="">
+                <div class="cart-item">
+                    <div class="trash-btn">
+                        <i class="far fa-trash-alt"></i>
+                    </div>
+                    <div class="product-icon bg-orange">
+                        <img src="data:image/png;base64,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" alt="">
+                        <span>Google Slides</span>
+                    </div>
+                    <div class="item-details">
+                        <div class="item-title">Google Slides</div>
+                        
+                        <div>
+                            <i class="fas fa-circle dots"></i> 
+                            <i class="fas fa-circle dots"></i>
+                            <i class="fas fa-circle dots"></i>
+                            <select class="level-select">
+                                <option value="1-3">LV 1-3</option>
+                                <option value="2-3">LV 2-3</option>
+                                <option value="3-3" selected>LV 3-3</option>
+                            </select>
+                        </div>
+                        <div class="item-price">THB 150</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="order-info-section">
+                <div class="order-card">
+                    <h3>Order Info</h3>
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span>THB 300</span>
                     </div>
 
-                    <div class="box-detail">
-                        <h3>Google Slides</h3>
-                        <div class="status-dots">
-                            <span class="dot active"></span> <span class="dot active"></span> <span class="dot"></span>        
-                            <div class="level-dropdown" tabindex="0">
-    <div class="selected-text">LV 1-3 ▾</div>
-    <div class="dropdown-list">
-        <div class="item">LV 2-3</div>
-        <div class="item">LV 3-3</div>
-        <div class="item">LV 4-3 </div>
+                    <div class="promo-box">
+                        <div class="input-group">
+                            <i class="fas fa-ticket-alt"></i>
+                            <input type="text" placeholder="Promotion code">
+                        </div>
+                        <button class="apply-btn">APPLY</button>
+                    </div>
+
+                    <div class="total-row">
+                        <span>Total payment</span>
+                        <span class="total-price">THB 300</span>
+                    </div>
+
+                    <button class="checkout-btn">LOG IN TO CHECKOUT</button>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-                        </div>
 
-                    </div>
-
-                    <div class="box-price">THB 150</div>
-                </div>
-
-            </div>
-            
-            <div class="summary-section">
-                <h2>Order Info</h2>
-                
-                <div class="summary-row">
-                    <span>Subtotal</span>
-                    <span>THB 300</span>
-                </div>
-
-                <div class="promo-row">
-                    <span class="ticket-icon">
-                        <img src="https://www.svgrepo.com/show/532295/ticket-simple.svg" alt=""></span> 
-                    <input type="text" placeholder="Promotion code">
-                    <button>APPLY</button>
-                </div>
-                
-                <hr>
-
-                <div class="summary-row total">
-                    <span>Total payment</span>
-                    <span class="total-price">THB 300</span>
-                </div>
-
-                <button class="btn-checkout">LOG IN TO CHECKOUT</button>
-            </div>
-        </div>           
-    
-    </div> 
 </body>
 </html>
